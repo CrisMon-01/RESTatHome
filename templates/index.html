@@ -7,8 +7,18 @@
     </head>
     <body>
         <h1>Hi page of REST@~</h1>
-        <form method="POST">
-            submit4: <input type="submit" name="5" values="5">
-        </form>
+        {% block body %}
+            <h2>All group in your home</h2>
+            {% for item in groups %}
+                <!-- <div>{{item[0]}}</div> -->
+                <form method="POST">
+                    {% if item[1] %}
+                    Stanza: {{item[0]}} Acceso: Si 
+                    {% else %}
+                    Stanza: {{item[0]}} Acceso: No 
+                    {% endif %}
+                </form>
+            {% endfor %}
+        {% endblock %}
     </body>
 </html>
