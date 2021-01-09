@@ -4,21 +4,37 @@
     <title>
         REST@~
     </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>  
     </head>
     <body>
-        <h1>Hi page of REST@~</h1>
+        <h1 class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">Hi page of REST@~</h1>
         {% block body %}
             <h2>All group in your home</h2>
             {% for item in groups %}
-                <!-- <div>{{item[0]}}</div> -->
-                <form method="POST">
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
                     {% if item[1] %}
-                    Stanza: {{item[0]}} Acceso: Si 
+                    Stanza: {{item[0]}} Acceso: <span class="badge badge-primary badge-pill">Si</span> 
                     {% else %}
-                    Stanza: {{item[0]}} Acceso: No 
+                    Stanza: {{item[0]}} Acceso: <span class="badge badge-primary badge-pill">No</span> 
                     {% endif %}
-                </form>
+                    </li>
+                </ul>
+                <!-- </form> -->
             {% endfor %}
         {% endblock %}
+        <h2>Cambia stato al gruppo</h1>
+        <form method='POST'>
+        <select multiple class="form-control" id="exampleFormControlSelect2" name="light">
+            {% for item in groups %}
+                <option value="{{item[0]}}">{{item[0]}}</option>
+            {% endfor %}
+        </select>
+        <button type="submit" values="Submit" class="btn btn-primary mb-2">Accendi/Spegni</button>
+        <!-- <p><input type="submit" values="Submit"></p> -->
+        </form>
+    <footer class="pt-4 my-md-5 pt-md-5 border-top">Credit CrisMon-01</footer>
     </body>
 </html>
