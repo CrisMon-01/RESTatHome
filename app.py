@@ -2,12 +2,16 @@ from flask import Flask, render_template, request
 import yaml
 import requests
 import json
+import socket
 
 configinfo = yaml.load(open('./config.yaml'), Loader=yaml.FullLoader)
-serverport = configinfo['serverport']
+try:
+    serverport = configinfo['serverport']
+except:
+    serverport = 8888
+    print("You will expose on 8888")
 bridgeip = configinfo['bridgeip']
 authuser = configinfo['authuser']
-lampadinatest = configinfo['lampadinatest']
 
 app = Flask(__name__)
 
@@ -33,4 +37,8 @@ def index():
         return render_template('index.html', groups=groups)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True, port=serverport)
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        if s.connect_ex(('localhost', serverport)) != 0 :
+            app.run(host='0.0.0.0', debug=True, port=serverport)
+        else:
+            app.run(host='0.0.0.0', debug=True, port=8081)
