@@ -36,6 +36,28 @@ def index():
     else:
         return render_template('index.html', groups=groups)
 
+@app.route('/creategroup', methods=['GET','POST'])
+def creategroup():
+    if request.method == 'GET':
+        req = requests.get("http://"+str(bridgeip)+"/api/"+authuser+"/lights")
+        lights_json = json.loads(req.content)
+        lights = []
+        for (k,v) in lights_json.items():
+            lights.append((k,v['name']))
+        return render_template('creategroup.html', lights=lights)
+    if request.method == 'POST':
+        print(str(request.form.get('gname'))+str(request.form.getlist('lights')))
+        json_group = {}
+        lights_new_group = []
+        for light in request.form.getlist('lights'):
+            lights_new_group.append(str(light))
+        json_group['lights'] = lights_new_group
+        json_group['name'] = str(request.form.get('gname'))
+        json_group['type']= 'Zone'
+        print(str(json.dumps(json_group)))
+        req = requests.post("http://"+str(bridgeip)+"/api/"+authuser+"/groups/", data=json.dumps(json_group))
+        return index()
+        
 if __name__ == '__main__':
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         if s.connect_ex(('localhost', serverport)) != 0 :

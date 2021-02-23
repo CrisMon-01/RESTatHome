@@ -22,19 +22,18 @@
                     {% endif %}
                     </li>
                 </ul>
-                <!-- </form> -->
             {% endfor %}
         {% endblock %}
         <h2>Cambia stato al gruppo</h1>
         <form method='POST'>
-        <select multiple class="form-control" id="exampleFormControlSelect2" name="light">
+        <select multiple class="form-control" name="light">
             {% for item in groups %}
                 <option value="{{item[0]}}">{{item[0]}}</option>
             {% endfor %}
         </select>
         <button type="submit" values="Submit" class="btn btn-primary mb-2">Accendi/Spegni</button>
-        <!-- <p><input type="submit" values="Submit"></p> -->
         </form>
+        <a href="{{ url_for('creategroup') }}">Create Groups</a>
     <footer class="pt-4 my-md-5 pt-md-5 border-top">Credit CrisMon-01</footer>
     </body>
 </html>
