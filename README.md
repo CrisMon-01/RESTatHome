@@ -5,9 +5,9 @@ You can manage your lights with the browser only (for guests or without the mobi
 In a web page you can see the groups (the same as the mobile app). I remove the groups from the routine (the `Group for x` ).
 In another page you can create group with a multiple selection box (you need to select your lights and add a name to the group)
 The principal page is made up of three part:
-* The first list the group and the actual state
+* The first list the groups and the actual state
 * The second allow you to change the current state of the lights in a group 
-* A link to a page to create new group
+* A link to a page to create new groups
 ## example
 * In the main page
 ![img1](./images/img1.png)
