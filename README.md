@@ -30,7 +30,8 @@ serverport: n
 The information about the bridge IP and the token is in the official [Philips HUE SDK page](https://developers.meethue.com/develop/get-started-2/): 
 
 ## Run
-`python3 app.py`
+`python3 app.py` <br>
+or `python app.py`
 
 ### P.S.
 I made this only for fun. <br>
